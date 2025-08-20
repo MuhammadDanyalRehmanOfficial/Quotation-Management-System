@@ -4,9 +4,6 @@ if (!isset($_SESSION['user'])) {
     header('Location: ../index.php');
     exit;
 }
-$pageTitle = "Add Items";
-include __DIR__ . '/../includes/header.php';
-include __DIR__ . '/../includes/navbar.php';
 
 $qid = (int)($_GET['id'] ?? 0);
 if ($qid <= 0) {
@@ -44,6 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_item_id'])) {
 
 // Fetch items for listing
 $items = $mysqli->query("SELECT id,name,barcode,sale_price,gst_percent FROM items ORDER BY name ASC");
+
+$pageTitle = "Add Items";
+include __DIR__ . '/../includes/header.php';
+include __DIR__ . '/../includes/navbar.php';
 
 // Fetch quote items
 $qi = $mysqli->query("SELECT qi.*, i.barcode FROM quotation_items qi LEFT JOIN items i ON i.id=qi.item_id WHERE quotation_id=$qid ORDER BY qi.id DESC");

@@ -1,21 +1,27 @@
 <?php
 require __DIR__ . '/../config/db.php';
+
 if (!isset($_SESSION['user'])) {
     header('Location: /index.php');
     exit;
 }
-$pageTitle = "Manage Customers";
-include __DIR__ . '/../includes/header.php';
-include __DIR__ . '/../includes/navbar.php';
 
+// Handle delete BEFORE any output
 if (isset($_GET['delete'])) {
     $id = (int)$_GET['delete'];
     $mysqli->query("DELETE FROM customers WHERE id=$id");
     header('Location: manage_customers.php');
     exit;
 }
+
+$pageTitle = "Manage Customers";
+include __DIR__ . '/../includes/header.php';
+include __DIR__ . '/../includes/navbar.php';
+
+// Fetch customers
 $res = $mysqli->query("SELECT * FROM customers ORDER BY id DESC");
 ?>
+
 
 <div class="container mt-4">
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center">

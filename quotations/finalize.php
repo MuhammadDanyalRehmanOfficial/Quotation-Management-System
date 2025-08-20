@@ -4,9 +4,7 @@ if (!isset($_SESSION['user'])) {
     header('Location: ../index.php');
     exit;
 }
-$pageTitle = "Finalize Quotation";
-include __DIR__ . '/../includes/header.php';
-include __DIR__ . '/../includes/navbar.php';
+
 
 $qid = (int)($_GET['id'] ?? 0);
 if ($qid <= 0) {
@@ -21,6 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: print.php?id=" . $qid);
     exit;
 }
+
+$pageTitle = "Finalize Quotation";
+include __DIR__ . '/../includes/header.php';
+include __DIR__ . '/../includes/navbar.php';
 
 $q = $mysqli->query("SELECT q.*, c.name AS customer_name, c.email, c.phone, c.address
                      FROM quotations q LEFT JOIN customers c ON c.id=q.customer_id

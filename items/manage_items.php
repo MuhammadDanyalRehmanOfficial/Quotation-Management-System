@@ -1,16 +1,21 @@
 <?php
 require __DIR__ . '/../config/db.php';
-if (!isset($_SESSION['user'])) { header('Location: ../index.php'); exit; }
+if (!isset($_SESSION['user'])) {
+  header('Location: ../index.php');
+  exit;
+}
+
+if (isset($_GET['delete'])) {
+  $id = (int)$_GET['delete'];
+  $mysqli->query("DELETE FROM items WHERE id=$id");
+  header('Location: manage_items.php');
+  exit;
+}
+
 $pageTitle = "Manage Items";
 include __DIR__ . '/../includes/header.php';
 include __DIR__ . '/../includes/navbar.php';
 
-if (isset($_GET['delete'])) {
-    $id = (int)$_GET['delete'];
-    $mysqli->query("DELETE FROM items WHERE id=$id");
-    header('Location: manage_items.php');
-    exit;
-}
 $res = $mysqli->query("SELECT * FROM items ORDER BY id DESC");
 ?>
 
@@ -53,7 +58,9 @@ $res = $mysqli->query("SELECT * FROM items ORDER BY id DESC");
               </tr>
             <?php endwhile; ?>
           <?php else: ?>
-            <tr><td colspan="7" class="text-center text-muted py-4">No items found.</td></tr>
+            <tr>
+              <td colspan="7" class="text-center text-muted py-4">No items found.</td>
+            </tr>
           <?php endif; ?>
         </tbody>
       </table>

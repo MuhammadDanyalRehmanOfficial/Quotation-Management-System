@@ -4,9 +4,6 @@ if (!isset($_SESSION['user'])) {
   header('Location: ../index.php');
   exit;
 }
-$pageTitle = "Manage Terms";
-include __DIR__ . '/../includes/header.php';
-include __DIR__ . '/../includes/navbar.php';
 
 if (isset($_GET['delete'])) {
   $id = (int)$_GET['delete'];
@@ -14,6 +11,11 @@ if (isset($_GET['delete'])) {
   header('Location: manage_terms.php');
   exit;
 }
+
+$pageTitle = "Manage Terms";
+include __DIR__ . '/../includes/header.php';
+include __DIR__ . '/../includes/navbar.php';
+
 $res = $mysqli->query("SELECT * FROM terms ORDER BY id DESC");
 ?>
 

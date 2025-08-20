@@ -1,4 +1,3 @@
-
 # Quotation Management System
 
 A web-based application for managing customers, items, terms, and quotations. This system streamlines the quotation creation process from customer and item selection to finalizing and printing professional quotations.

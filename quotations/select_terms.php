@@ -4,9 +4,6 @@ if (!isset($_SESSION['user'])) {
     header('Location: /index.php');
     exit;
 }
-$pageTitle = "Select Terms";
-include __DIR__ . '/../includes/header.php';
-include __DIR__ . '/../includes/navbar.php';
 
 $qid = (int)($_GET['id'] ?? 0);
 if ($qid <= 0) {
@@ -51,6 +48,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: finalize.php?id=" . $qid);
     exit;
 }
+
+$pageTitle = "Select Terms";
+include __DIR__ . '/../includes/header.php';
+include __DIR__ . '/../includes/navbar.php';
 
 $defaults = $mysqli->query("SELECT * FROM terms ORDER BY id DESC");
 $existing = $mysqli->query("SELECT * FROM quotation_terms WHERE quotation_id=$qid")->fetch_all(MYSQLI_ASSOC);
