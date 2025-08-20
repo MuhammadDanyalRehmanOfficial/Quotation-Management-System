@@ -123,12 +123,12 @@ quotation-management-system/
 
 ## 📌 Notes
 
-* Ensure your MySQL database is running and the credentials in `config.php` are correct.
-* If needed, create database tables manually or import from a provided `.sql` file (not included here).
+* Ensure your MySQL database is running and the credentials in `config/db.php` are correct.
+* If needed, create database tables manually or import from a provided `.sql` file (included here in `config`).
 * For any AJAX functionality to work, JavaScript should be enabled in the browser.
 
 ---
 
 ## 📃 License
 
-This project is for educational and internal business use. For other usage, please contact the author.
+This project is for educational and internal business use. For other usage, please get in touch with the author.
